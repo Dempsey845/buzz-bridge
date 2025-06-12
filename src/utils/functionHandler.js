@@ -49,3 +49,14 @@ export const createAlert = async (data) => {
     console.error("Error calling createAlert:", error);
   }
 };
+
+export const deleteAlert = async (data) => {
+  try {
+    const token = await getIdToken();
+    const deleteAlertFunction = httpsCallable(functions, "deleteAlert");
+    const result = await deleteAlertFunction({ token, alertId: data.alertId });
+    console.log(result.data);
+  } catch (error) {
+    console.error("Error calling deleteAlert: ", error);
+  }
+};
